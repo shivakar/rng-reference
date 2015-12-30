@@ -11,3 +11,5 @@ Reference implementations of various RNG engines.
     * Added from http://xorshift.di.unimi.it/splitmix64.c
 * Xorshift128+
     * Added from http://xorshift.di.unimi.it/xorshift128plus.c
+* xorshift1024*
+    * Added from http://xorshift.di.unimi.it/xorshift1024star.c
