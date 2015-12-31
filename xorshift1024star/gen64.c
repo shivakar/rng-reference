@@ -47,6 +47,7 @@ void reset(uint64_t seed) {
         for(int i = 0; i < 16; i++) {
             s[i] = splitmix64_uint64(&sm64);
         }
+        p = 0;
 }
 
 void check_file(FILE *fp) {

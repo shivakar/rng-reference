@@ -9,4 +9,4 @@ gen64:  gen64.c xorshift1024star.h splitmix64.h
 	${CC} -c $<
 
 clean:
-	rm -rf *.o *~ *.dSYM gen64
+	rm -rf *.o *~ *.dSYM gen64 *.txt
