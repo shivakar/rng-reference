@@ -21,8 +21,7 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 uint64_t x; /* The state can be seeded with any value. */
 uint64_t uint64(void);
 double float64(void);
-
-const double mul = 1.0 / 18446744073709551616.0;
+double float64oo(void);
 
 uint64_t uint64() {
 	uint64_t z = (x += UINT64_C(0x9E3779B97F4A7C15));
@@ -31,6 +30,12 @@ uint64_t uint64() {
 	return z ^ (z >> 31);
 }
 
+/* Return double in [0.0, 1.0) */
 double float64() {
-    return uint64() * mul;
+    return ((double)(uint64() >> 11)) / ((double)(((uint64_t)1) <<53));
+}
+
+/* Return double in (0.0, 1.0) */
+double float64oo() {
+    return ((double)(uint64() >> 12) + 0.5) / ((double)(((uint64_t)1) <<52));
 }

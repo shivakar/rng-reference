@@ -167,6 +167,7 @@ double genrand64_real3(void)
 }
 
 /* generates a random number on (0,1]-real-interval */
+/* TODO: This is wrong. Fix this */
 double genrand64_real4(void) {
     return ((genrand64_int64() >> 12) + 0.5) * (1.0/4503599627370495.5);
 }

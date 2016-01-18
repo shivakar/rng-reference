@@ -17,10 +17,10 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 
 uint64_t s[16];
 int p;
-const double mul = 1.0 / 18446744073709551616.0;
 
 uint64_t xorshift1024star_uint64(void);
 double xorshift1024star_float64(void);
+double xorshift1024star_float64oo(void);
 
 uint64_t xorshift1024star_uint64(void) {
 	const uint64_t s0 = s[p];
@@ -30,6 +30,12 @@ uint64_t xorshift1024star_uint64(void) {
 	return s[p] * UINT64_C(1181783497276652981);
 }
 
+/* Return double in [0.0, 1.0) */
 double xorshift1024star_float64() {
-	return xorshift1024star_uint64() * mul;
+    return ((double)(xorshift1024star_uint64() >> 11)) / ((double)(((uint64_t)1) <<53));
+}
+
+/* Return double in (0.0, 1.0) */
+double xorshift1024star_float64oo() {
+    return ((double)(xorshift1024star_uint64() >> 12) + 0.5) / ((double)(((uint64_t)1) <<52));
 }

@@ -7,7 +7,7 @@
 #include "splitmix64.h"
 #include "xorshift128plus.h"
 
-typedef enum {UINT64, DOUBLE_CO} result_type;
+typedef enum {UINT64, DOUBLE_OO, DOUBLE_CO} result_type;
 
 typedef uint64_t (*generator_int) ();
 typedef double (*generator_double) ();
@@ -72,6 +72,10 @@ void write_samples_to_file(uint64_t seed, uint64_t num_samples,
         case DOUBLE_CO:
                 dgen = float64;
                 sprintf(rt_str, "double_co");
+                break;
+        case DOUBLE_OO:
+                dgen = float64oo;
+                sprintf(rt_str, "double_oo");
                 break;
         }
 

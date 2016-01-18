@@ -20,7 +20,7 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 uint64_t s[2];
 uint64_t uint64(void);
 double float64(void);
-const double mul = 1.0 / 18446744073709551616.0;
+double float64oo(void);
 
 uint64_t uint64(void) {
 	uint64_t s1 = s[0];
@@ -31,6 +31,12 @@ uint64_t uint64(void) {
 	return s[1] + s0;
 }
 
+/* Return double in [0.0, 1.0) */
 double float64() {
-    return uint64() * mul;
+    return ((double)(uint64() >> 11)) / ((double)(((uint64_t)1) <<53));
+}
+
+/* Return double in (0.0, 1.0) */
+double float64oo() {
+    return ((double)(uint64() >> 12) + 0.5) / ((double)(((uint64_t)1) <<52));
 }
